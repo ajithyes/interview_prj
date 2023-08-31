@@ -1,29 +1,28 @@
 import 'package:interview_prj/presentation/subjects/models/subjects_model.dart';
-
 import '/core/app_export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'subjects_state.dart';
+part 'subject_details_state.dart';
 
 /// A bloc that manages the state of a Subject according to the event that is dispatched to it.
-class SubjectCubit extends Cubit<SubjectState> with UrlConstants {
-  SubjectCubit() : super(SubjectInitial());
+class SubjectDetailCubit extends Cubit<SubjectDetailState> with UrlConstants {
+  SubjectDetailCubit() : super(SubjectDetailInitial());
 
-  getSubjects() async {
-    emit(SubjectLoading());
+  getSubjectDetail(id) async {
+    emit(SubjectDetailLoading());
 
     try {
       final data = await NetWorkManager.shared().request(
-          url: "$baseUrl$subjects",
+          url: "$baseUrl${subject(id)}",
           method: RequestMethods.get,
           isAuthRequired: false);
 
-      emit(SubjectLoaded(subjectModel: SubjectModel.fromJson(data)));
+      emit(SubjectDetailLoaded(studentDetailModel: Subjects.fromJson(data)));
     } catch (e) {
       log("$e");
-      emit(SubjectError("${e}"));
+      emit(SubjectDetailError("${e}"));
       await Future.delayed(Duration(seconds: 1));
-      getSubjects();
+      getSubjectDetail(id);
     }
   }
 }

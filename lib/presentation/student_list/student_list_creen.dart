@@ -1,7 +1,10 @@
-import 'package:hamon/core/app_export.dart';
-import 'package:hamon/presentation/student_list/bloc/student_cubit.dart';
+import 'package:interview_prj/core/app_export.dart';
+import 'package:interview_prj/presentation/student_detail/bloc/student_detail_cubit.dart';
+import 'package:interview_prj/presentation/student_list/bloc/student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interview_prj/widgets/custom_loader.dart';
+import 'package:interview_prj/widgets/listview_widget.dart';
 
 class StudentScreen extends StatefulWidget {
   const StudentScreen({super.key});
@@ -20,17 +23,17 @@ class _StudentScreenState extends State<StudentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Students",)),
-
+      appBar: AppBar(
+          title: Text(
+        "Students",
+      )),
       body: Column(
         children: [
-          Container(
-            height: 400,
-            width: double.infinity,
+          Expanded(
             child: BlocBuilder<StudentCubit, StudentState>(
               builder: (context, state) {
                 if (state is StudentLoading) {
-                  return Container(
+                  return Center(
                     child: Column(children: [
                       CircularProgressIndicator(),
                     ]),
@@ -41,10 +44,22 @@ class _StudentScreenState extends State<StudentScreen> {
                       itemCount: state.studentModel!.students!.length,
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
-                        return Container(
-                          child:
-                              Text("${state.studentModel!.students![index].name}"),
-                        );
+                        return ListItemWidget(
+                            title: state.studentModel!.students![index].name,
+                            text:
+                                "${state.studentModel!.students![index].email}",
+                            subText:
+                                "${state.studentModel!.students![index].age}",
+                            onPressed: () async {
+                              SquareLoader.show(context);
+                              await BlocProvider.of<StudentDetailCubit>(context)
+                                  .getStudentDetail(
+                                      state.studentModel!.students![index].id);
+                              SquareLoader.dismiss(context);
+
+                              Navigator.pushNamed(
+                                  context, PageRoutes.studentDetailScreen);
+                            });
                       });
                 }
                 if (state is StudentError) {
@@ -53,12 +68,6 @@ class _StudentScreenState extends State<StudentScreen> {
                 return Container();
               },
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              
-            },
-            child: Text("Product List"),
           ),
         ],
       ),

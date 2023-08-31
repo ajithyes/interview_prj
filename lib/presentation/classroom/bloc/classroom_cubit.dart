@@ -1,6 +1,4 @@
-
-
-import 'package:hamon/presentation/classroom/models/classroom_model.dart';
+import 'package:interview_prj/presentation/classroom/models/classroom_model.dart';
 
 import '/core/app_export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,16 +13,17 @@ class ClassroomCubit extends Cubit<ClassroomState> with UrlConstants {
     emit(ClassroomLoading());
 
     try {
-      final  data = await NetWorkManager.shared().request(
+      final data = await NetWorkManager.shared().request(
           url: "$baseUrl$classrooms",
           method: RequestMethods.get,
           isAuthRequired: false);
 
-      emit(ClassroomLoaded(
-          classroomModel: ClassroomModel.fromJson(data)));
+      emit(ClassroomLoaded(classroomModel: ClassroomModel.fromJson(data)));
     } catch (e) {
       log("$e");
       emit(ClassroomError("${e}"));
+      await Future.delayed(Duration(seconds: 1));
+      getClassrooms();
     }
   }
 }

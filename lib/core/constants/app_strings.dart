@@ -8,9 +8,9 @@ class AppStrings {
 
 class ButtonStrings {
   static const String verify = "Verify";
-  static const String student = "Student";
-  static const String subject = "Subject";
-  static const String classroom = "Class Room";
+  static const String student = "Students";
+  static const String subject = "Subjects";
+  static const String classroom = "Classrooms";
 }
 
 class LabelStrings {

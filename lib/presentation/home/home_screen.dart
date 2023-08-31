@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hamon/core/app_export.dart';
-import 'package:hamon/core/constants/app_strings.dart';
-import 'package:hamon/presentation/home/widget/home_widget.dart';
+import 'package:interview_prj/core/app_export.dart';
+import 'package:interview_prj/core/constants/app_strings.dart';
+import 'package:interview_prj/presentation/home/widget/home_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen();

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:hamon/core/constants/http_responses.dart';
-import 'package:hamon/core/app_export.dart';
+import 'package:interview_prj/core/constants/http_responses.dart';
+import 'package:interview_prj/core/app_export.dart';
 
 class APIHandler {
   dynamic returnResponse(Response response) {

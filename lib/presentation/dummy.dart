@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hamon/routes/app_routes.dart';
+import 'package:interview_prj/routes/app_routes.dart';
 
 class DummyScreen extends StatelessWidget {
   const DummyScreen();

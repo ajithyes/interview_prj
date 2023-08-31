@@ -2,27 +2,28 @@ import '/core/app_export.dart';
 import 'package:interview_prj/presentation/Student_list/models/Student_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'student_state.dart';
+part 'student_detail_state.dart';
 
 /// A bloc that manages the state of a Student according to the event that is dispatched to it.
-class StudentCubit extends Cubit<StudentState> with UrlConstants {
-  StudentCubit() : super(StudentInitial());
+class StudentDetailCubit extends Cubit<StudentDetailState> with UrlConstants {
+  StudentDetailCubit() : super(StudentDetailInitial());
 
-  getStudents() async {
-    emit(StudentLoading());
+  getStudentDetail(id) async {
+    emit(StudentDetailLoading());
 
     try {
       final data = await NetWorkManager.shared().request(
-          url: "$baseUrl$students",
+          url: "$baseUrl${student(id)}",
           method: RequestMethods.get,
           isAuthRequired: false);
 
-      emit(StudentLoaded(studentModel: StudentModel.fromJson(data)));
+      emit(StudentDetailLoaded(studentDetailModel: Students.fromJson(data)));
     } catch (e) {
       log("$e");
-      emit(StudentError("${e}"));
+       emit(StudentDetailError("${e}"));
       await Future.delayed(Duration(seconds: 1));
-      getStudents();
+      getStudentDetail(id);
+     
     }
   }
 }

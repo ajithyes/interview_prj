@@ -1,8 +1,9 @@
-import 'package:hamon/core/app_export.dart';
+import 'package:interview_prj/core/app_export.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hamon/presentation/classroom/bloc/classroom_cubit.dart';
+import 'package:interview_prj/presentation/classroom/bloc/classroom_cubit.dart';
+import 'package:interview_prj/widgets/listview_widget.dart';
 
 class ClassroomScreen extends StatefulWidget {
   const ClassroomScreen({super.key});
@@ -21,17 +22,17 @@ class _ClassroomScreenState extends State<ClassroomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Classroom",)),
-
+      appBar: AppBar(
+          title: Text(
+        "Classroom",
+      )),
       body: Column(
         children: [
-          Container(
-            height: 400,
-            width: double.infinity,
+          Expanded(
             child: BlocBuilder<ClassroomCubit, ClassroomState>(
               builder: (context, state) {
                 if (state is ClassroomLoading) {
-                  return Container(
+                  return Center(
                     child: Column(children: [
                       CircularProgressIndicator(),
                     ]),
@@ -42,10 +43,19 @@ class _ClassroomScreenState extends State<ClassroomScreen> {
                       itemCount: state.classroomModel!.classrooms!.length,
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
-                        return Container(
-                          child:
-                              Text("${state.classroomModel!.classrooms![index].name}"),
-                        );
+                        return ListItemWidget(
+                            title:
+                                state.classroomModel!.classrooms![index].name,
+                            text:
+                                "${state.classroomModel!.classrooms![index].size}",
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, PageRoutes.classroomLayoutSceen,
+                                  arguments: {
+                                    "classroom": state
+                                        .classroomModel!.classrooms![index],
+                                  });
+                            });
                       });
                 }
                 if (state is ClassroomError) {
@@ -54,12 +64,6 @@ class _ClassroomScreenState extends State<ClassroomScreen> {
                 return Container();
               },
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              
-            },
-            child: Text("Product List"),
           ),
         ],
       ),
