@@ -27,7 +27,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           child: Text(
             "${widget.title}",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 18,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w700,
             ),

@@ -38,12 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ListView.builder(
-          itemCount: menu.length,
-          itemBuilder: (context, index) => HomeWidget(
-            title: menu[index].title,
-            onPressed: menu[index].onPressed,
+      body: SafeArea(
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.all(15),
+          child: ListView.builder(
+            itemCount: menu.length,
+            itemBuilder: (context, index) => HomeWidget(
+              title: menu[index].title,
+              onPressed: menu[index].onPressed,
+            ),
           ),
         ),
       ),

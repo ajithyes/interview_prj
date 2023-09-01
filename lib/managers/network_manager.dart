@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:interview_prj/core/app_export.dart';
 
-class NetWorkManager extends APIHandler  {
+class NetWorkManager extends APIHandler {
   static NetWorkManager? _shared;
   var dio = Dio();
   late FormData? formData;
@@ -30,13 +30,19 @@ class NetWorkManager extends APIHandler  {
       }
 
       Response? response;
+      log("url====${url} ${params}=== ${method}");
       if (method == RequestMethods.get) {
-        log("url====${url}");
         response = await dio.get(url);
       } else if (method == RequestMethods.post) {
-        response = await dio.post(url, data: jsonEncode(params));
+        var formData = FormData();
+        formData = FormData.fromMap(params!);
+        response = await dio.post(url, data: formData);
       } else if (method == RequestMethods.put) {
         response = await dio.put(url);
+      } else if (method == RequestMethods.patch) {
+        var formData = FormData();
+        formData = FormData.fromMap(params!);
+        response = await dio.patch(url, data: formData);
       } else if (method == RequestMethods.delete) {
         response = await dio.delete(url);
       }

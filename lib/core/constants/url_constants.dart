@@ -6,4 +6,7 @@ mixin UrlConstants {
   final String subjects = "subjects/$apiKey";
   String subject(id) => "subjects/$id$apiKey";
   final String classrooms = "classrooms/$apiKey";
+  String classroom(id) => "classrooms/$id$apiKey";
+  String assignToClassroom(id) => "classrooms/$id$apiKey";
+  String registration({id=""}) => "registration/$id$apiKey";
 }

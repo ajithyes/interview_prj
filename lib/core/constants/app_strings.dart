@@ -4,6 +4,9 @@ class AppStrings {
   static const String welcome = "Hey {}";
   static const String appName = "Hamon";
   static const String home = "home";
+  static const String subjectAssignSuccessMessage = "Subject assigned successfully";
+  static const String studentAssignSuccessMessage = "Student assigned successfully";
+  
 }
 
 class ButtonStrings {

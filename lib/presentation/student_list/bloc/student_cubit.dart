@@ -1,5 +1,5 @@
+import 'package:interview_prj/presentation/student_list/models/student_model.dart';
 import '/core/app_export.dart';
-import 'package:interview_prj/presentation/Student_list/models/Student_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'student_state.dart';

@@ -1,3 +1,5 @@
+import 'package:interview_prj/presentation/assign_student/assign_student_to_classroom_screen.dart';
+import 'package:interview_prj/presentation/assign_subject/assign_subject_to_classroom_screen.dart';
 import 'package:interview_prj/presentation/classroom/classroom_screen.dart';
 import 'package:interview_prj/presentation/classroom_layout/classroom_layout_screen.dart';
 import 'package:interview_prj/presentation/home/home_screen.dart';
@@ -16,6 +18,9 @@ class PageRoutes {
   static const String subjectScreen = "/subjectScreen";
   static const String subjectDetailScreen = "/subjectDetailScreen";
   static const String classroomLayoutSceen = "/classroomLayoutSceen";
+  static const String assignSubjectToClassroom = "/assignSubjectToClassroom";
+  static const String assignStudentToClassroom = "/assignStudentToClassroom";
+  
 }
 
 class Routes {
@@ -28,5 +33,8 @@ class Routes {
     PageRoutes.subjectScreen: (context) => SubjectScreen(),
     PageRoutes.subjectDetailScreen: (context) => SubjectDetailScreen(),
     PageRoutes.classroomLayoutSceen: (context) => ClassroomLayoutSceen(),
+    PageRoutes.assignSubjectToClassroom: (context) => AssignSubjectToClassroom(),
+    PageRoutes.assignStudentToClassroom: (context) => AssignStudentToClassroom(),
+  
   };
 }

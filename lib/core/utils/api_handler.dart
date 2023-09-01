@@ -43,5 +43,6 @@ enum RequestMethods {
   put,
   delete,
   upload,
+  patch,
   download
 }

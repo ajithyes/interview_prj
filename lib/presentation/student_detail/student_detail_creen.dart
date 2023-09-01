@@ -15,19 +15,17 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   @override
   void initState() {
     super.initState();
-   
-    
   }
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-        "Student Details",
-      )),
+        title: Text(
+          "Student Details",
+        ),
+        
+      ),
       body: Column(
         children: [
           Expanded(
@@ -41,15 +39,13 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   );
                 }
                 if (state is StudentDetailLoaded) {
-                 
-                        return ListItemWidget(
-                          title: state.studentDetailModel!.name,
-                          text: "${state.studentDetailModel!.email}",
-                          subText:
-                              "${state.studentDetailModel!.age}",
-                        );
-                      }
-                
+                  return ListItemWidget(
+                    title: state.studentDetailModel!.name,
+                    text: "${state.studentDetailModel!.email}",
+                    subText: "${state.studentDetailModel!.age}",
+                  );
+                }
+
                 if (state is StudentDetailError) {
                   Fluttertoast.showToast(msg: "${state.error}");
                 }
